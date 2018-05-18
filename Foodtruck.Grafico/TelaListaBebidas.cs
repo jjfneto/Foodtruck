@@ -11,18 +11,18 @@ using System.Windows.Forms;
 
 namespace Foodtruck.Grafico
 {
-    public partial class TelaListaClientes : Form
+    public partial class TelaListaBebidas : Form
     {
-        public TelaListaClientes()
+        public TelaListaBebidas()
         {
             InitializeComponent();
         }
 
-        private void AbreTelaInclusaoAlteracao(Cliente clienteSelecionado)
+        private void AbreTelaInclusaoAlteracao(Bebida bebidaSelecionada)
         {
-            ManterCliente tela = new ManterCliente();
+            ManterBebida tela = new ManterBebida();
             tela.MdiParent = this.MdiParent;
-            tela.ClienteSelecionado = clienteSelecionado;
+            tela.BebidaSelecionada = bebidaSelecionada;
             tela.FormClosed += Tela_FormClosed;
             tela.Show();
         }
@@ -34,28 +34,28 @@ namespace Foodtruck.Grafico
 
         private void Tela_FormClosed(object sender, FormClosedEventArgs e)
         {
-            CarregarClientes();
+            CarregarBebidas();
         }
 
-        private void CarregarClientes()
+        private void CarregarBebidas()
         {
-            dgClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgClientes.MultiSelect = false;
-            dgClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgClientes.AutoGenerateColumns = false;
-            List<Cliente> clientes = Program.Gerenciador.TodosOsClientes();
-            dgClientes.DataSource = clientes;
+            dgBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgBebidas.MultiSelect = false;
+            dgBebidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgBebidas.AutoGenerateColumns = false;
+            List<Bebida> bebidas = Program.Gerenciador.TodasAsBebidas();
+            dgBebidas.DataSource = bebidas;
         }
 
-        private void TelaListaClientes_Load(object sender, EventArgs e)
+        private void TelaListaBebidas_Load(object sender, EventArgs e)
         {
-            CarregarClientes();
+            CarregarBebidas();
             this.WindowState = FormWindowState.Maximized;
         }
 
         private bool VerificarSelecao()
         {
-            if (dgClientes.SelectedRows.Count <= 0)
+            if (dgBebidas.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Selecione uma linha");
                 return false;
@@ -65,22 +65,22 @@ namespace Foodtruck.Grafico
 
         private void btRemover_Click(object sender, EventArgs e)
         {
-            if(VerificarSelecao())
+            if (VerificarSelecao())
             {
                 DialogResult resultado = MessageBox.Show("Tem certeza?", "Quer remover?", MessageBoxButtons.YesNo);
                 if (resultado == DialogResult.Yes)
                 {
-                    Cliente clienteSelecionado = (Cliente)dgClientes.SelectedRows[0].DataBoundItem;
-                    var validacao = Program.Gerenciador.RemoverCliente(clienteSelecionado);
+                    Bebida bebidaSelecionada = (Bebida)dgBebidas.SelectedRows[0].DataBoundItem;
+                    var validacao = Program.Gerenciador.RemoverBebida(bebidaSelecionada);
                     if (validacao.Valido)
                     {
-                        MessageBox.Show("Cliente removido com sucesso");
+                        MessageBox.Show("Bebida removida com sucesso");
                     }
                     else
                     {
-                        MessageBox.Show("Ocorreu um problema ao remover o cliente");
+                        MessageBox.Show("Ocorreu um problema ao remover a bebida");
                     }
-                    CarregarClientes();
+                    CarregarBebidas();
                 }
             }
         }
@@ -89,8 +89,8 @@ namespace Foodtruck.Grafico
         {
             if (VerificarSelecao())
             {
-                Cliente clienteSelecionado = (Cliente)dgClientes.SelectedRows[0].DataBoundItem;
-                AbreTelaInclusaoAlteracao(clienteSelecionado);
+                Bebida bebidaSelecionada = (Bebida)dgBebidas.SelectedRows[0].DataBoundItem;
+                AbreTelaInclusaoAlteracao(bebidaSelecionada);
             }
         }
     }

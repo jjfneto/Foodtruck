@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Foodtruck.Negocio.Models
 {
+    [Table(name:"Lanches")]
     public class Lanche : Produto
     {
-        
         public override string Descrever()
         {
             return String.Format($"{this.Id} - {this.Nome} - {this.Valor}");

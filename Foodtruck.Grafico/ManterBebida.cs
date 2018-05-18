@@ -12,45 +12,45 @@ using System.Windows.Forms;
 
 namespace Foodtruck.Grafico
 {
-    public partial class ManterCliente : Form
+    public partial class ManterBebida : Form
     {
-        public Cliente ClienteSelecionado { get; set; }
+        public Bebida BebidaSelecionada { get; set; }
 
-        public ManterCliente()
+        public ManterBebida()
         {
             InitializeComponent();
         }
 
         private void btSalvar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente();
-            if(Int64.TryParse(tbId.Text, out long value))
+            Bebida bebida = new Bebida();
+            if (Int64.TryParse(tbId.Text, out long value))
             {
-                cliente.Id = value;
+                bebida.Id = value;
             }
             else
             {
-                cliente.Id = -1;
+                bebida.Id = -1;
                 //passa indentificador com valor negativo se não conseguir converter
             }
-            cliente.CPF = tbCpf.Text;
-            cliente.Nome = tbNome.Text;
-            cliente.Email = tbEmail.Text;
+            bebida.Nome = tbNome.Text;
+            bebida.Tamanho = Convert.ToSingle(tbTamanho.Text);
+            bebida.Valor = Convert.ToDecimal(tbValor.Text);
 
             Validacao validacao;
-            if (ClienteSelecionado == null)
+            if (BebidaSelecionada == null)
             {
-                validacao = Program.Gerenciador.AdicionarCliente(cliente);
+                validacao = Program.Gerenciador.CadastraBebida(bebida);
             }
             else
             {
-                validacao = Program.Gerenciador.AlterarCliente(cliente);
+                validacao = Program.Gerenciador.AlterarBebida(bebida);
             }
-            
+
             if (!validacao.Valido)
             {
                 String mensagemValidacao = "";
-                foreach(var chave in validacao.Mensagens.Keys)
+                foreach (var chave in validacao.Mensagens.Keys)
                 {
                     String msg = validacao.Mensagens[chave];
                     mensagemValidacao += msg;
@@ -60,8 +60,9 @@ namespace Foodtruck.Grafico
             }
             else
             {
-                MessageBox.Show("Cliente salvo com sucesso");
+                MessageBox.Show("Bebida salva com sucesso");
             }
+
             this.Close();
         }
 
@@ -70,14 +71,14 @@ namespace Foodtruck.Grafico
             this.Close();
         }
 
-        private void ManterCliente_Shown(object sender, EventArgs e)
+        private void ManterBebida_Shown(object sender, EventArgs e)
         {
-            if (ClienteSelecionado != null)
+            if (BebidaSelecionada != null)
             {
-                this.tbId.Text = ClienteSelecionado.Id.ToString();
-                this.tbNome.Text = ClienteSelecionado.Nome;
-                this.tbCpf.Text = ClienteSelecionado.CPF;
-                this.tbEmail.Text = ClienteSelecionado.Email;
+                this.tbId.Text = BebidaSelecionada.Id.ToString();
+                this.tbNome.Text = BebidaSelecionada.Nome;
+                this.tbTamanho.Text = BebidaSelecionada.Tamanho.ToString();
+                this.tbValor.Text = BebidaSelecionada.Valor.ToString();
             }
         }
     }

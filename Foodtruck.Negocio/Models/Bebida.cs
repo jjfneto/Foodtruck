@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace Foodtruck.Negocio.Models
 {
+    [Table(name:"Bebidas")]
     public class Bebida : Produto
     {
         public float Tamanho { get; set; }
-
-        [ForeignKey("Bebidas")]
-        public virtual ICollection<Pedido> Pedidos { get; set; }
-
 
         public override String Descrever()
         {

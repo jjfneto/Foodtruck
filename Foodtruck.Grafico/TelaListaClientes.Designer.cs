@@ -40,9 +40,10 @@
             // 
             // btAdicionar
             // 
-            this.btAdicionar.Location = new System.Drawing.Point(12, 26);
+            this.btAdicionar.Location = new System.Drawing.Point(6, 14);
+            this.btAdicionar.Margin = new System.Windows.Forms.Padding(2);
             this.btAdicionar.Name = "btAdicionar";
-            this.btAdicionar.Size = new System.Drawing.Size(160, 66);
+            this.btAdicionar.Size = new System.Drawing.Size(80, 34);
             this.btAdicionar.TabIndex = 0;
             this.btAdicionar.Text = "Adicionar";
             this.btAdicionar.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // 
             // btRemover
             // 
-            this.btRemover.Location = new System.Drawing.Point(179, 26);
+            this.btRemover.Location = new System.Drawing.Point(90, 14);
+            this.btRemover.Margin = new System.Windows.Forms.Padding(2);
             this.btRemover.Name = "btRemover";
-            this.btRemover.Size = new System.Drawing.Size(168, 66);
+            this.btRemover.Size = new System.Drawing.Size(84, 34);
             this.btRemover.TabIndex = 1;
             this.btRemover.Text = "Remover";
             this.btRemover.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // 
             // btAlterar
             // 
-            this.btAlterar.Location = new System.Drawing.Point(354, 26);
+            this.btAlterar.Location = new System.Drawing.Point(177, 14);
+            this.btAlterar.Margin = new System.Windows.Forms.Padding(2);
             this.btAlterar.Name = "btAlterar";
-            this.btAlterar.Size = new System.Drawing.Size(144, 66);
+            this.btAlterar.Size = new System.Drawing.Size(72, 34);
             this.btAlterar.TabIndex = 2;
             this.btAlterar.Text = "Alterar";
             this.btAlterar.UseVisualStyleBackColor = true;
@@ -70,6 +73,8 @@
             // 
             // dgClientes
             // 
+            this.dgClientes.AllowUserToResizeColumns = false;
+            this.dgClientes.AllowUserToResizeRows = false;
             this.dgClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -78,10 +83,12 @@
             this.Id,
             this.Nome,
             this.Email});
-            this.dgClientes.Location = new System.Drawing.Point(12, 135);
+            this.dgClientes.Location = new System.Drawing.Point(6, 70);
+            this.dgClientes.Margin = new System.Windows.Forms.Padding(2);
             this.dgClientes.Name = "dgClientes";
+            this.dgClientes.ReadOnly = true;
             this.dgClientes.RowTemplate.Height = 33;
-            this.dgClientes.Size = new System.Drawing.Size(1101, 544);
+            this.dgClientes.Size = new System.Drawing.Size(550, 283);
             this.dgClientes.TabIndex = 3;
             // 
             // Id
@@ -104,16 +111,16 @@
             // 
             // TelaListaClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1125, 691);
+            this.ClientSize = new System.Drawing.Size(562, 359);
             this.Controls.Add(this.dgClientes);
             this.Controls.Add(this.btAlterar);
             this.Controls.Add(this.btRemover);
             this.Controls.Add(this.btAdicionar);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TelaListaClientes";
             this.Text = "TelaListaClientes";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.TelaListaClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).EndInit();
             this.ResumeLayout(false);

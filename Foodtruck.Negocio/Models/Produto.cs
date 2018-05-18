@@ -12,6 +12,7 @@ namespace Foodtruck.Negocio.Models
         public String Nome { get; set; }
         public Decimal Valor { get; set; }
         public virtual ICollection<Pedido> Pedidos { get; set; }
+
         public abstract String Descrever();
     }
 }

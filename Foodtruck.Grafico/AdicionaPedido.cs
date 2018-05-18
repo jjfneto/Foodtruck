@@ -21,16 +21,12 @@ namespace Foodtruck.Grafico
             InitializeComponent();
         }
 
-        private void AdicionaPedido_Load(object sender, EventArgs e)
+        private void AdicionarPedido_Load(object sender, EventArgs e)
         {
             CarregaComboBoxes();
-            CarregaDatagrids();
+            CarregaDataGrids();
             CarregaTotal();
-        }
-
-        private void CarregaTotal()
-        {
-            lbTotal.Text = pedido.ValorTotal().ToString();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void CarregaComboBoxes()
@@ -48,56 +44,69 @@ namespace Foodtruck.Grafico
             cbBebidas.DataSource = Program.Gerenciador.TodasAsBebidas();
         }
 
-        private void CarregaDatagrids()
+        private void CarregaTotal()
         {
+            lbTotal.Text = pedido.ValorTotal().ToString();
+        }
+
+        private void btAddBebida_Click(object sender, EventArgs e)
+        {
+            Bebida bebidaSelecionada = (Bebida)cbBebidas.SelectedItem;
+            pedido.Bebidas.Add(bebidaSelecionada);
+            CarregaDataGrids();
+        }
+
+        private void btAddLanche_Click(object sender, EventArgs e)
+        {
+            Lanche lancheSelecionado = cbLanches.SelectedItem as Lanche;
+            pedido.Lanches.Add(lancheSelecionado);
+            CarregaDataGrids();
+        }
+
+        private void CarregaDataGrids()
+        {
+            dgBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgBebidas.AutoGenerateColumns = false;
+            dgBebidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgBebidas.MultiSelect = false;
             dgBebidas.DataSource = pedido.Bebidas.ToList();
-            
+
+            dgLanches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgLanches.AutoGenerateColumns = false;
+            dgLanches.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgLanches.MultiSelect = false;
             dgLanches.DataSource = pedido.Lanches.ToList();
 
             CarregaTotal();
         }
 
-        private void btAdicionaBebida_Click(object sender, EventArgs e)
-        {
-            Bebida bebidaSelecionada = (Bebida)cbBebidas.SelectedItem;
-            pedido.Bebidas.Add(bebidaSelecionada);
-            CarregaDatagrids();
-        }
-
-        private void btAdicionaLanche_Click(object sender, EventArgs e)
-        {
-            Lanche lancheSelecionado = cbLanches.SelectedItem as Lanche;
-            pedido.Lanches.Add(lancheSelecionado);
-            CarregaDatagrids();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void btSalvar_Click(object sender, EventArgs e)
         {
             try
             {
                 pedido.Cliente = cbClientes.SelectedItem as Cliente;
                 pedido.DataCompra = DateTime.Now;
-                Validacao validacao = Program.Gerenciador.CadastraPedido(pedido);
-                if (validacao.Valido)
+                Validacao validacao = Program.Gerenciador.CadastrarPedido(pedido);
+
+                if (!validacao.Valido)
                 {
-                    MessageBox.Show("Pedido cadastrado com sucesso!");
+                    String mensagemValidacao = "";
+                    foreach (var msg in validacao.Mensagens)
+                    {
+                        mensagemValidacao += msg + Environment.NewLine;
+                    }
+                    MessageBox.Show(mensagemValidacao, "Erro");
                 }
                 else
                 {
-                    String msg = "";
-                    foreach (var mensagem in validacao.Mensagens)
-                    {
-                        msg += mensagem + Environment.NewLine;
-                    }
-                    MessageBox.Show(msg, "Erro");
+                    MessageBox.Show("Pedido cadastrado com sucesso");
                 }
-            }catch(Exception ex)
+                this.Close();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro grave, fale com o administrador");
             }
-            
         }
     }
 }

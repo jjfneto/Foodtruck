@@ -16,7 +16,8 @@ namespace Foodtruck.Negocio.Models
         public String Email { get; set; }
 
         [NotMapped]
-        public String Descricao {
+        public String Descricao
+        {
             get
             {
                 return this.CPF + " - " + this.Nome;

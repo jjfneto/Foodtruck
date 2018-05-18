@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Foodtruck.Negocio.Models
 {
-
-
-    [Table(name: "Pedidos")]
+    [Table(name:"Pedidos")]
     public class Pedido
     {
         public long Id { get; set; }

@@ -65,7 +65,7 @@
             this.cbClientes.FormattingEnabled = true;
             this.cbClientes.Location = new System.Drawing.Point(56, 12);
             this.cbClientes.Name = "cbClientes";
-            this.cbClientes.Size = new System.Drawing.Size(335, 21);
+            this.cbClientes.Size = new System.Drawing.Size(285, 21);
             this.cbClientes.TabIndex = 1;
             // 
             // label2
@@ -219,7 +219,7 @@
             this.btSalvar.UseVisualStyleBackColor = true;
             this.btSalvar.Click += new System.EventHandler(this.btSalvar_Click);
             // 
-            // AdicionarPedido
+            // AdicionaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,7 +237,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.label1);
-            this.Name = "AdicionarPedido";
+            this.Name = "AdicionaPedido";
             this.Text = "AdicionarPedido";
             this.Load += new System.EventHandler(this.AdicionarPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgBebidas)).EndInit();

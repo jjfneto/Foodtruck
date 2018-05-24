@@ -127,7 +127,7 @@ namespace Foodtruck.Grafico
 
         private void adicionarPedidoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdicionaPedido tela = new AdicionaPedido();
+            TelaListaPedidos tela = new TelaListaPedidos();
             tela.MdiParent = this;
             tela.Show();
         }

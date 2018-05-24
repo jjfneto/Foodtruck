@@ -35,24 +35,19 @@ namespace Foodtruck.Negocio
         {
             Validacao validacao = new Validacao();
 
-            if (clienteAdicionado.Id < 0)
-            {
-                validacao.Mensagens.Add("Id", "O indenfiticador deve constituir apenas números positivos");
-            }
-            //verifica se já tem alguma mensagem de erro e se tiver pula essa verificação
-            if (this.banco.Clientes.Where(c => c.Id == clienteAdicionado.Id).Any() && validacao.Mensagens.Count == 0)
+            if (this.banco.Clientes.Where(c => c.Id == clienteAdicionado.Id).Any())
             {
                 validacao.Mensagens.Add("Id", "Já existe um cliente com esse código");
             }
 
             if (String.IsNullOrEmpty(clienteAdicionado.CPF))
             {
-                validacao.Mensagens.Add("CPF", "O campo CPF não pode ser nulo ou vazio");
+                validacao.Mensagens.Add("CPF1", "O campo CPF não pode ser nulo ou vazio");
             }
 
-            if (this.banco.Clientes.Where(c => c.CPF == clienteAdicionado.CPF).Any() && validacao.Mensagens.Count == 0)
+            if (this.banco.Clientes.Where(c => c.CPF == clienteAdicionado.CPF).Any())
             {
-                validacao.Mensagens.Add("CPF", "Já exite um cliente com esse CPF");
+                validacao.Mensagens.Add("CPF2", "Já exite um cliente com esse CPF");
             }
 
             if (String.IsNullOrEmpty(clienteAdicionado.Nome))
@@ -62,12 +57,12 @@ namespace Foodtruck.Negocio
 
             if (String.IsNullOrEmpty(clienteAdicionado.Email))
             {
-                validacao.Mensagens.Add("Email", "O email não pode ser nulo ou vazio");
+                validacao.Mensagens.Add("Email1", "O email não pode ser nulo ou vazio");
             }
 
-            if (!clienteAdicionado.Email.Contains("@") && validacao.Mensagens.Count == 0)
+            if (!clienteAdicionado.Email.Contains("@"))
             {
-                validacao.Mensagens.Add("Email", "Email no formato inválido");
+                validacao.Mensagens.Add("Email2", "Email no formato inválido");
             }
 
             if (validacao.Valido)
@@ -194,7 +189,7 @@ namespace Foodtruck.Negocio
             {
                 validacao.Mensagens.Add("datacompra", "O campo data não pode ser nulo ou vazío");
             }
-
+            
             if (!(this.banco.Clientes.Where(x => x.Id == pedidoCadastrado.Cliente.Id).Any()))
             {
                 validacao.Mensagens.Add("cliente", "Não existe nenhum cliente cadastrado com esse código idenfiticador");
@@ -224,9 +219,7 @@ namespace Foodtruck.Negocio
             return validacao;
         }
 
-
         /////////////////////////////////////////////////////////////////////
-
 
         public Cliente BuscaClientePorId(long id)
         {

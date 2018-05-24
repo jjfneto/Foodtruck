@@ -15,6 +15,7 @@ namespace Foodtruck.Grafico
     public partial class AdicionaPedido : Form
     {
         Pedido pedido = new Pedido();
+        public Pedido PedidoSelecionado { get; set; }
 
         public AdicionaPedido()
         {
@@ -46,7 +47,7 @@ namespace Foodtruck.Grafico
 
         private void CarregaTotal()
         {
-            lbTotal.Text = pedido.ValorTotal().ToString();
+            lbTotal.Text = pedido.ValorTotal.ToString();
         }
 
         private void btAddBebida_Click(object sender, EventArgs e)

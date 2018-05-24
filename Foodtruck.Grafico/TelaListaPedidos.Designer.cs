@@ -31,10 +31,12 @@
             this.dgPedidos = new System.Windows.Forms.DataGridView();
             this.btAlterar = new System.Windows.Forms.Button();
             this.btAdicionar = new System.Windows.Forms.Button();
+            this.btFinalizarPedido = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DadosCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Encerrado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,11 +52,11 @@
             this.Id,
             this.DadosCliente,
             this.DataCompra,
-            this.ValorTotal});
+            this.ValorTotal,
+            this.Encerrado});
             this.dgPedidos.Location = new System.Drawing.Point(11, 57);
             this.dgPedidos.Margin = new System.Windows.Forms.Padding(2);
             this.dgPedidos.Name = "dgPedidos";
-            this.dgPedidos.ReadOnly = true;
             this.dgPedidos.RowTemplate.Height = 33;
             this.dgPedidos.Size = new System.Drawing.Size(905, 331);
             this.dgPedidos.TabIndex = 7;
@@ -81,39 +83,54 @@
             this.btAdicionar.UseVisualStyleBackColor = true;
             this.btAdicionar.Click += new System.EventHandler(this.btAdicionar_Click);
             // 
+            // btFinalizarPedido
+            // 
+            this.btFinalizarPedido.Location = new System.Drawing.Point(171, 11);
+            this.btFinalizarPedido.Margin = new System.Windows.Forms.Padding(2);
+            this.btFinalizarPedido.Name = "btFinalizarPedido";
+            this.btFinalizarPedido.Size = new System.Drawing.Size(72, 34);
+            this.btFinalizarPedido.TabIndex = 8;
+            this.btFinalizarPedido.Text = "Finalizar pedido";
+            this.btFinalizarPedido.UseVisualStyleBackColor = true;
+            this.btFinalizarPedido.Click += new System.EventHandler(this.btFinalizarPedido_Click);
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Codigo";
             this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
             // 
             // DadosCliente
             // 
             this.DadosCliente.DataPropertyName = "DadosCliente";
             this.DadosCliente.HeaderText = "Cliente";
             this.DadosCliente.Name = "DadosCliente";
-            this.DadosCliente.ReadOnly = true;
             // 
             // DataCompra
             // 
             this.DataCompra.DataPropertyName = "DataCompra";
             this.DataCompra.HeaderText = "Data";
             this.DataCompra.Name = "DataCompra";
-            this.DataCompra.ReadOnly = true;
             // 
             // ValorTotal
             // 
             this.ValorTotal.DataPropertyName = "ValorTotal";
             this.ValorTotal.HeaderText = "Valor Total";
             this.ValorTotal.Name = "ValorTotal";
-            this.ValorTotal.ReadOnly = true;
+            // 
+            // Encerrado
+            // 
+            this.Encerrado.DataPropertyName = "Encerrado";
+            this.Encerrado.HeaderText = "Encerrado";
+            this.Encerrado.Name = "Encerrado";
+            this.Encerrado.ReadOnly = true;
             // 
             // TelaListaPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 399);
+            this.Controls.Add(this.btFinalizarPedido);
             this.Controls.Add(this.dgPedidos);
             this.Controls.Add(this.btAlterar);
             this.Controls.Add(this.btAdicionar);
@@ -130,9 +147,11 @@
         private System.Windows.Forms.DataGridView dgPedidos;
         private System.Windows.Forms.Button btAlterar;
         private System.Windows.Forms.Button btAdicionar;
+        private System.Windows.Forms.Button btFinalizarPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn DadosCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorTotal;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Encerrado;
     }
 }

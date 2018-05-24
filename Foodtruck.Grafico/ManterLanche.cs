@@ -24,15 +24,7 @@ namespace Foodtruck.Grafico
         private void btSalvar_Click(object sender, EventArgs e)
         {
             Lanche lanche = new Lanche();
-            if (Int64.TryParse(tbId.Text, out long value))
-            {
-                lanche.Id = value;
-            }
-            else
-            {
-                lanche.Id = -1;
-                //passa indentificador com valor negativo se não conseguir converter
-            }
+            lanche.Id = Convert.ToInt64(tbId.Text);
             lanche.Nome = tbNome.Text;
             lanche.Valor = Convert.ToDecimal(tbValor.Text);
 

@@ -1,4 +1,5 @@
-﻿using Foodtruck.Negocio.Models;
+﻿using Foodtruck.Negocio;
+using Foodtruck.Negocio.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace Foodtruck.Grafico
 {
     public partial class TelaListaPedidos : Form
     {
+        Pedido pedido = new Pedido();
+
         public TelaListaPedidos()
         {
             InitializeComponent();
@@ -69,6 +72,38 @@ namespace Foodtruck.Grafico
                 Pedido pedidoSelecionado = (Pedido)dgPedidos.SelectedRows[0].DataBoundItem;
                 AbreTelaInclusaoAlteracao(pedidoSelecionado);
             }
+        }
+
+        private void btFinalizarPedido_Click(object sender, EventArgs e)
+        {
+            if (VerificarSelecao())
+            {
+                Pedido pedidoSelecionado = (Pedido)dgPedidos.SelectedRows[0].DataBoundItem;
+
+                if (pedidoSelecionado.Encerrado.Equals(true))
+                {
+                    MessageBox.Show("Esse pedido já foi finalizado");
+                    return;
+                }
+
+                pedidoSelecionado.Encerrado = true;
+                Validacao validacao = Program.Gerenciador.AlterarPedido(pedidoSelecionado);
+
+                if (!validacao.Valido)
+                {
+                    String mensagemValidacao = "";
+                    foreach (var msg in validacao.Mensagens)
+                    {
+                        mensagemValidacao += msg + Environment.NewLine;
+                    }
+                    MessageBox.Show(mensagemValidacao, "Erro");
+                }
+                else
+                {
+                    MessageBox.Show("Pedido finalizado com sucesso");
+                }
+            }
+            CarregarPedidos();
         }
     }
 }

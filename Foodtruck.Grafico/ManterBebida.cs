@@ -24,15 +24,7 @@ namespace Foodtruck.Grafico
         private void btSalvar_Click(object sender, EventArgs e)
         {
             Bebida bebida = new Bebida();
-            if (Int64.TryParse(tbId.Text, out long value))
-            {
-                bebida.Id = value;
-            }
-            else
-            {
-                bebida.Id = -1;
-                //passa indentificador com valor negativo se não conseguir converter
-            }
+            bebida.Id = Convert.ToInt64(tbId.Text);
             bebida.Nome = tbNome.Text;
             bebida.Tamanho = Convert.ToSingle(tbTamanho.Text);
             bebida.Valor = Convert.ToDecimal(tbValor.Text);

@@ -15,10 +15,12 @@ namespace Foodtruck.Negocio.Models
         public virtual Cliente Cliente { get; set; }
         public virtual ICollection<Lanche> Lanches { get; set; }
         public virtual ICollection<Bebida> Bebidas { get; set; }
+        public bool Encerrado { get; set; }
 
         public Pedido()
         {
             this.DataCompra = DateTime.MinValue;
+            this.Encerrado = false;
             this.Lanches = new List<Lanche>();
             this.Bebidas = new List<Bebida>();
         }
@@ -37,8 +39,9 @@ namespace Foodtruck.Negocio.Models
         {
             get
             {
-                Decimal totalLanches = this.Lanches.Sum(s => s.Valor);
-                Decimal totalBebidas = this.Bebidas.Sum(s => s.Valor);
+                Decimal totalLanches = 0, totalBebidas = 0;
+                totalLanches = this.Lanches.Sum(s => s.Valor);
+                totalBebidas = this.Bebidas.Sum(s => s.Valor);
                 Decimal valorTotal = totalLanches + totalBebidas;
                 return valorTotal;
             }

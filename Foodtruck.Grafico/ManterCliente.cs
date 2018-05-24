@@ -24,15 +24,7 @@ namespace Foodtruck.Grafico
         private void btSalvar_Click(object sender, EventArgs e)
         {
             Cliente cliente = new Cliente();
-            if(Int64.TryParse(tbId.Text, out long value))
-            {
-                cliente.Id = value;
-            }
-            else
-            {
-                cliente.Id = -1;
-                //passa indentificador com valor negativo se não conseguir converter
-            }
+            cliente.Id = Convert.ToInt64(tbId.Text);
             cliente.CPF = tbCpf.Text;
             cliente.Nome = tbNome.Text;
             cliente.Email = tbEmail.Text;

@@ -83,8 +83,8 @@ namespace Foodtruck.Grafico
 
         private void btSalvar_Click(object sender, EventArgs e)
         {
-            try
-            {
+            /*try
+            {*/
                 pedido.Cliente = cbClientes.SelectedItem as Cliente;
                 pedido.DataCompra = DateTime.Now;
                 Validacao validacao = Program.Gerenciador.CadastrarPedido(pedido);
@@ -103,11 +103,11 @@ namespace Foodtruck.Grafico
                     MessageBox.Show("Pedido cadastrado com sucesso");
                 }
                 this.Close();
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro grave, fale com o administrador");
-            }
+            }*/
         }
     }
 }

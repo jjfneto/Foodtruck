@@ -70,6 +70,13 @@ namespace Foodtruck.Grafico
             if (VerificarSelecao())
             {
                 Pedido pedidoSelecionado = (Pedido)dgPedidos.SelectedRows[0].DataBoundItem;
+
+                if (pedidoSelecionado.Encerrado.Equals(true))
+                {
+                    MessageBox.Show("Você não pode alterar um pedido finalizado");
+                    return;
+                }
+
                 AbreTelaInclusaoAlteracao(pedidoSelecionado);
             }
         }
@@ -87,7 +94,7 @@ namespace Foodtruck.Grafico
                 }
 
                 pedidoSelecionado.Encerrado = true;
-                Validacao validacao = Program.Gerenciador.AlterarPedido(pedidoSelecionado);
+                Validacao validacao = Program.Gerenciador.AlterarPedido(pedidoSelecionado, false);
 
                 if (!validacao.Valido)
                 {

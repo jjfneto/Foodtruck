@@ -54,7 +54,6 @@ namespace Foodtruck.Grafico
             {
                 MessageBox.Show("Bebida salva com sucesso");
             }
-
             this.Close();
         }
 

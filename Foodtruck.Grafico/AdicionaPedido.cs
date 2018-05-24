@@ -22,7 +22,7 @@ namespace Foodtruck.Grafico
             InitializeComponent();
         }
 
-        private void AdicionarPedido_Load(object sender, EventArgs e)
+        private void AdicionaPedido_Load(object sender, EventArgs e)
         {
             CarregaComboBoxes();
             CarregaDataGrids();
@@ -32,9 +32,12 @@ namespace Foodtruck.Grafico
 
         private void CarregaComboBoxes()
         {
-            cbClientes.DisplayMember = "Descricao";
-            cbClientes.ValueMember = "Id";
-            cbClientes.DataSource = Program.Gerenciador.TodosOsClientes();
+            if (PedidoSelecionado == null)
+            {
+                cbClientes.DisplayMember = "Descricao";
+                cbClientes.ValueMember = "Id";
+                cbClientes.DataSource = Program.Gerenciador.TodosOsClientes();
+            }
 
             cbLanches.DisplayMember = "Nome";
             cbLanches.ValueMember = "Id";
@@ -85,9 +88,21 @@ namespace Foodtruck.Grafico
         {
             /*try
             {*/
-                pedido.Cliente = cbClientes.SelectedItem as Cliente;
-                pedido.DataCompra = DateTime.Now;
-                Validacao validacao = Program.Gerenciador.CadastrarPedido(pedido);
+                if (PedidoSelecionado == null)
+                {
+                    pedido.Cliente = cbClientes.SelectedItem as Cliente;
+                    pedido.DataCompra = DateTime.Now;
+                }
+   
+                Validacao validacao;
+                if (PedidoSelecionado == null)
+                {
+                    validacao = Program.Gerenciador.CadastrarPedido(pedido);
+                }
+                else
+                {
+                    validacao = Program.Gerenciador.AlterarPedido(pedido, true);
+                }
 
                 if (!validacao.Valido)
                 {
@@ -108,6 +123,34 @@ namespace Foodtruck.Grafico
             {
                 MessageBox.Show("Ocorreu um erro grave, fale com o administrador");
             }*/
+        }
+
+        private void btCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AdicionaPedido_Shown(object sender, EventArgs e)
+        {
+            if (PedidoSelecionado != null)
+            {
+                this.pedido.Id = PedidoSelecionado.Id;
+                this.pedido.Cliente = PedidoSelecionado.Cliente;
+                this.pedido.DataCompra = PedidoSelecionado.DataCompra;
+                this.cbClientes.Text = PedidoSelecionado.Cliente.Descricao;
+                // preciso arrumar isso aqui e passar a ID
+
+                foreach (Bebida beb in PedidoSelecionado.Bebidas)
+                {
+                    pedido.Bebidas.Add(beb);
+                }
+
+                foreach (Lanche lan in PedidoSelecionado.Lanches)
+                {
+                    pedido.Lanches.Add(lan);
+                }
+                CarregaDataGrids();
+            }
         }
     }
 }

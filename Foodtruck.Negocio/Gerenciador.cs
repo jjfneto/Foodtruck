@@ -219,15 +219,28 @@ namespace Foodtruck.Negocio
             return validacao;
         }
 
-        public Validacao AlterarPedido(Pedido pedidoAlterado)
+        public Validacao AlterarPedido(Pedido pedidoAlterado, bool novo)
         {
             Validacao validacao = new Validacao();
             Pedido pedidoBanco = BuscaPedidoPorId(pedidoAlterado.Id);
-            pedidoBanco.Bebidas = pedidoBanco.Bebidas;
-            pedidoBanco.Lanches = pedidoBanco.Lanches;
-            pedidoBanco.DataCompra = pedidoBanco.DataCompra;
-            pedidoBanco.Cliente = pedidoBanco.Cliente;
-            pedidoBanco.Encerrado = pedidoAlterado.Encerrado;
+
+            if (novo)
+            {
+                pedidoBanco.Bebidas = pedidoAlterado.Bebidas;
+                pedidoBanco.Lanches = pedidoAlterado.Lanches;
+                pedidoBanco.DataCompra = pedidoAlterado.DataCompra;
+                pedidoBanco.Cliente = pedidoAlterado.Cliente;
+                pedidoBanco.Encerrado = pedidoAlterado.Encerrado;
+            }
+            else
+            {
+                pedidoBanco.Bebidas = pedidoBanco.Bebidas;
+                pedidoBanco.Lanches = pedidoBanco.Lanches;
+                pedidoBanco.DataCompra = pedidoBanco.DataCompra;
+                pedidoBanco.Cliente = pedidoBanco.Cliente;
+                pedidoBanco.Encerrado = pedidoAlterado.Encerrado;
+            }
+            
             this.banco.SaveChanges();
             return validacao;
         }

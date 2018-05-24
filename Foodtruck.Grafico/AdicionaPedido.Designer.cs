@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btSalvar = new System.Windows.Forms.Button();
+            this.btCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgBebidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLanches)).BeginInit();
             this.SuspendLayout();
@@ -219,11 +220,22 @@
             this.btSalvar.UseVisualStyleBackColor = true;
             this.btSalvar.Click += new System.EventHandler(this.btSalvar_Click);
             // 
+            // btCancelar
+            // 
+            this.btCancelar.Location = new System.Drawing.Point(516, 372);
+            this.btCancelar.Name = "btCancelar";
+            this.btCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btCancelar.TabIndex = 13;
+            this.btCancelar.Text = "Cancelar";
+            this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
+            // 
             // AdicionaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 405);
+            this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btSalvar);
             this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.label4);
@@ -238,8 +250,9 @@
             this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.label1);
             this.Name = "AdicionaPedido";
-            this.Text = "AdicionarPedido";
-            this.Load += new System.EventHandler(this.AdicionarPedido_Load);
+            this.Text = "AdicionaPedido";
+            this.Load += new System.EventHandler(this.AdicionaPedido_Load);
+            this.Shown += new System.EventHandler(this.AdicionaPedido_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgBebidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLanches)).EndInit();
             this.ResumeLayout(false);
@@ -268,5 +281,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdLanche;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeLanche;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorLanche;
+        private System.Windows.Forms.Button btCancelar;
     }
 }

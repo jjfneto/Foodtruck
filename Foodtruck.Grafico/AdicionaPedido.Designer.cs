@@ -48,6 +48,8 @@
             this.lbTotal = new System.Windows.Forms.Label();
             this.btSalvar = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
+            this.btDelBebida = new System.Windows.Forms.Button();
+            this.btDelLanche = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgBebidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLanches)).BeginInit();
             this.SuspendLayout();
@@ -108,7 +110,7 @@
             this.btAddBebida.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddBebida.Location = new System.Drawing.Point(285, 55);
             this.btAddBebida.Name = "btAddBebida";
-            this.btAddBebida.Size = new System.Drawing.Size(30, 23);
+            this.btAddBebida.Size = new System.Drawing.Size(18, 23);
             this.btAddBebida.TabIndex = 6;
             this.btAddBebida.Text = "+";
             this.btAddBebida.UseVisualStyleBackColor = true;
@@ -119,7 +121,7 @@
             this.btAddLanche.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddLanche.Location = new System.Drawing.Point(643, 57);
             this.btAddLanche.Name = "btAddLanche";
-            this.btAddLanche.Size = new System.Drawing.Size(30, 23);
+            this.btAddLanche.Size = new System.Drawing.Size(18, 23);
             this.btAddLanche.TabIndex = 7;
             this.btAddLanche.Text = "+";
             this.btAddLanche.UseVisualStyleBackColor = true;
@@ -230,11 +232,35 @@
             this.btCancelar.UseVisualStyleBackColor = true;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
+            // btDelBebida
+            // 
+            this.btDelBebida.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDelBebida.Location = new System.Drawing.Point(309, 55);
+            this.btDelBebida.Name = "btDelBebida";
+            this.btDelBebida.Size = new System.Drawing.Size(18, 23);
+            this.btDelBebida.TabIndex = 14;
+            this.btDelBebida.Text = "-";
+            this.btDelBebida.UseVisualStyleBackColor = true;
+            this.btDelBebida.Click += new System.EventHandler(this.btDelBebida_Click);
+            // 
+            // btDelLanche
+            // 
+            this.btDelLanche.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDelLanche.Location = new System.Drawing.Point(667, 57);
+            this.btDelLanche.Name = "btDelLanche";
+            this.btDelLanche.Size = new System.Drawing.Size(18, 23);
+            this.btDelLanche.TabIndex = 15;
+            this.btDelLanche.Text = "-";
+            this.btDelLanche.UseVisualStyleBackColor = true;
+            this.btDelLanche.Click += new System.EventHandler(this.btDelLanche_Click);
+            // 
             // AdicionaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 405);
+            this.ClientSize = new System.Drawing.Size(718, 405);
+            this.Controls.Add(this.btDelLanche);
+            this.Controls.Add(this.btDelBebida);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btSalvar);
             this.Controls.Add(this.lbTotal);
@@ -282,5 +308,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeLanche;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorLanche;
         private System.Windows.Forms.Button btCancelar;
+        private System.Windows.Forms.Button btDelBebida;
+        private System.Windows.Forms.Button btDelLanche;
     }
 }

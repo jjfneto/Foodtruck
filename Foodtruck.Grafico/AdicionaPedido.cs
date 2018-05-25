@@ -60,10 +60,24 @@ namespace Foodtruck.Grafico
             CarregaDataGrids();
         }
 
+        private void btDelBebida_Click(object sender, EventArgs e)
+        {
+            Bebida bebidaSelecionada = (Bebida)dgBebidas.SelectedRows[0].DataBoundItem;
+            pedido.Bebidas.Remove(bebidaSelecionada);
+            CarregaDataGrids();
+        }
+
         private void btAddLanche_Click(object sender, EventArgs e)
         {
-            Lanche lancheSelecionado = cbLanches.SelectedItem as Lanche;
+            Lanche lancheSelecionado = (Lanche)cbLanches.SelectedItem;
             pedido.Lanches.Add(lancheSelecionado);
+            CarregaDataGrids();
+        }
+
+        private void btDelLanche_Click(object sender, EventArgs e)
+        {
+            Lanche lancheSelecionado = (Lanche)dgLanches.SelectedRows[0].DataBoundItem;
+            pedido.Lanches.Remove(lancheSelecionado);
             CarregaDataGrids();
         }
 
@@ -138,7 +152,6 @@ namespace Foodtruck.Grafico
                 this.pedido.Cliente = PedidoSelecionado.Cliente;
                 this.pedido.DataCompra = PedidoSelecionado.DataCompra;
                 this.cbClientes.Text = PedidoSelecionado.Cliente.Descricao;
-                // preciso arrumar isso aqui e passar a ID
 
                 foreach (Bebida beb in PedidoSelecionado.Bebidas)
                 {
